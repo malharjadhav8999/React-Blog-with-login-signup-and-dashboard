@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import validator from "validator";
 
 const Login = () => {
+  const [emailError, setEmailError] = useState("");
+  const validateEmail = (e) => {
+    var email = e.target.value;
+
+    if (validator.isEmail(email)) {
+      setEmailError("Valid Email :)");
+    } else {
+      setEmailError("Enter valid Email!");
+    }
+  };
+
   return (
     <Form inline id="login_form">
       <FormGroup id="email">
@@ -13,7 +25,16 @@ const Login = () => {
           name="email"
           placeholder="Email"
           type="email"
+          onChange={(e) => validateEmail(e)}
         />
+        <span
+          style={{
+            fontWeight: "bold",
+            color: "red",
+          }}
+        >
+          {emailError}
+        </span>
       </FormGroup>{" "}
       <FormGroup id="pass">
         <Label for="examplePassword" hidden>
