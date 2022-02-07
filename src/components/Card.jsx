@@ -10,28 +10,57 @@ import {
 } from "reactstrap";
 
 const ProjectCard = (props) => {
-  const { url, title, desc } = props;
-  return (
+
+  const { id, first_name, last_name, email, avatar } = props; 
+
+return (
     <Card>
       <CardImg
         alt="Card image cap"
-        src={url}
+        src={avatar}
         top
         style={{
-          width: "50%",
-          height: "50%",
+          width: "20%",
+          height: "20%",
         }}
       />
       <CardBody>
-        <CardTitle tag="h5">{title}</CardTitle>
+      <CardTitle tag="h5">{id} {first_name} {last_name }</CardTitle>
         <CardSubtitle className="mb-2 text-muted" tag="h6">
           Card subtitle
         </CardSubtitle>
-        <CardText>{desc}</CardText>
+        <CardText>{email}</CardText>
         <Button>Button</Button>
       </CardBody>
     </Card>
   );
+
+
+
+
+
+  // const { url, title, desc } = props;
+  // return (
+  //   <Card>
+  //     <CardImg
+  //       alt="Card image cap"
+  //       src={url}
+  //       top
+  //       style={{
+  //         width: "50%",
+  //         height: "50%",
+  //       }}
+  //     />
+  //     <CardBody>
+  //       <CardTitle tag="h5">{title}</CardTitle>
+  //       <CardSubtitle className="mb-2 text-muted" tag="h6">
+  //         Card subtitle
+  //       </CardSubtitle>
+  //       <CardText>{desc}</CardText>
+  //       <Button>Button</Button>
+  //     </CardBody>
+  //   </Card>
+  // );
 };
 
 export default ProjectCard;
