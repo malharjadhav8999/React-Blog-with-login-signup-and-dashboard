@@ -25,7 +25,7 @@ function App() {
     return (
       <div>
         <Dashboard setIsLogin={setIsLogin} />
-        {/* <SignUp /> */}
+        <SignUp />
       </div>
     );
   } else {

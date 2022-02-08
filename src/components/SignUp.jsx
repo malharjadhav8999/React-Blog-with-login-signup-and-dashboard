@@ -82,9 +82,13 @@ const clearEmailField = () => {};
 
 const SignUp = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const { email, password, firstName, lastName } = state;
+
   const onSignUp = (e) => {
+    // e.preventDefault();
+
+    console.log(e.target.email.value);
+
     let schema = yup.object().shape({
       firstName: yup.string().email(),
       lastName: yup.string().url(),
@@ -106,6 +110,7 @@ const SignUp = () => {
 
   return (
     <>
+      e.preventDefault();
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -126,8 +131,10 @@ const SignUp = () => {
           <input type="text" className="form-control" placeholder="Last name" />
         </div>
         <div className="form-group">
-          <label>Email address</label>
+          <label for="email">Email address</label>
           <input
+            id="email"
+            name="email"
             type="email"
             className="form-control"
             placeholder="Enter email"

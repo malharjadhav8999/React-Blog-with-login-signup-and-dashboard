@@ -64,7 +64,7 @@ const reducer = (state, action) => {
       return state;
     }
   }
-};  
+};
 
 // -----------------------------------------------------------------------
 
@@ -72,7 +72,7 @@ const Login = ({ setIsLogin }) => {
   // const [emailError, setEmailError] = useState("");
   // const [passwordError, setPasswordError] = useState("");
 
-  // const [email, setEmail] = useState("");
+  // const [email, setEmail]USERS_DATA_ = useState("");
   // const [password, setPassword] = useState("");
 
   // const [submit, setSubmit] = useState(true);
@@ -85,16 +85,21 @@ const Login = ({ setIsLogin }) => {
   // -----------------------------------------------------------------------
 
   const validateEmail = () => {
-    console.log(email);
+    console.log(validator.isEmail(email));
 
     if (validator.isEmail(email)) {
       // setEmailError("Valid Email :)");
-      dispatch({ type: loginConstants.emailError, payload: "Valid Email :)" });
+      console.log("this is validemail", email);
+      dispatch({
+        type: loginConstants.setEmailError,
+        payload: "Valid Email :)",
+      });
       return true;
     } else {
       // setEmailError("Enter valid Email!");
+      console.log("this is unvalidemail", email);
       dispatch({
-        type: loginConstants.emailError,
+        type: loginConstants.setEmailError,
         payload: "Enter valid Email!",
       });
     }
@@ -114,17 +119,28 @@ const Login = ({ setIsLogin }) => {
       })
     ) {
       // setPasswordError("Is Strong Password");
+      console.log("this is valid stromg passward", password);
       dispatch({
-        type: loginConstants.passwordError,
+        type: loginConstants.Set,
         payload: "Is Strong Password",
       });
 
       return true;
     } else {
+      console.log("this is unvalid stromg passward", password);
       // setPasswordError("Is Not Strong Password");
       dispatch({
-        type: loginConstants.passwordError,
-        payload: "Is Not Strong Password",
+        type: loginConstants.setPasswordError,
+        payload: (
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "green",
+            }}
+          >
+            {"Is Not Strong Password"},{/* {emailError} */}
+          </p>
+        ),
       });
     }
     return false;
@@ -134,7 +150,9 @@ const Login = ({ setIsLogin }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (validateEmail()) {
+    var f = validatePassword();
+    var m = validateEmail();
+    if (m && f) {
       const requestOptions = {
         method: "POST",
         headers: {
@@ -142,6 +160,7 @@ const Login = ({ setIsLogin }) => {
         },
         body: JSON.stringify({ email: email, password: password }),
       };
+      console.log(requestOptions);
       fetch("https://reqres.in/api/login", requestOptions)
         .then((response) => response.json())
         .then((data) => {
@@ -149,6 +168,8 @@ const Login = ({ setIsLogin }) => {
           setIsLogin(true);
         });
     }
+    console.log(emailError, "hello");
+
     // const { data } = await fetch("");
     // console.log(data);
   };
@@ -180,14 +201,14 @@ const Login = ({ setIsLogin }) => {
         <span
           style={{
             fontWeight: "bold",
-            color: "red",
+            color: "white",
           }}
         >
           {emailError}
         </span>
       </FormGroup>
       {/* ----------------------------------------------------------------------- */}
-      <FormGroup id="pass">
+      <FormGroup id="pass" style={{ display: "flex" }}>
         <Label for="examplePassword" hidden>
           Password
         </Label>
