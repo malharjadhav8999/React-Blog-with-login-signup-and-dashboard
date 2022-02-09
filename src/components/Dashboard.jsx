@@ -10,7 +10,7 @@ import {
 } from "../redux/users/action";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({ setIsLogin }) => {
+const Dashboard = ({ title /*setIsLogin*/ }) => {
   // const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
   const userState = useSelector((state) => state.userReducer);
@@ -46,7 +46,8 @@ const Dashboard = ({ setIsLogin }) => {
 
   return (
     <div>
-      {<Navbar1 setIsLogin={setIsLogin} />}
+      {<Navbar1 /*setIsLogin={setIsLogin}*/ />}
+      <h1>{title}</h1>
       {userData.map((user) => (
         // <div onClick={navigateToUserDetails(user.id)}>
         <ProjectCard

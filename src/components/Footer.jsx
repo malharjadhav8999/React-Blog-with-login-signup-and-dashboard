@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div
       style={{
-        color: "lightblue",
+        background: "lightblue",
       }}
     >
       <h1>This is footer</h1>

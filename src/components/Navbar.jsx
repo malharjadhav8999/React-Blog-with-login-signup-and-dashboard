@@ -14,7 +14,7 @@ import {
   NavbarText,
   Button,
 } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink1 } from "react-router-dom";
 
 const Navbar1 = ({ setIsLogin }) => {
   let navigate1 = useNavigate();
@@ -27,7 +27,7 @@ const Navbar1 = ({ setIsLogin }) => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/Dashboard/">Dashboard</NavLink>
+              <NavLink href="/dashboard/">Dashboard</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/blogs/">Blogs</NavLink>
@@ -42,14 +42,27 @@ const Navbar1 = ({ setIsLogin }) => {
                 Options
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>Premium Users</DropdownItem>
-                <DropdownItem>Regular Users</DropdownItem>
+                <DropdownItem>
+                  {/* {navigate1("/dashboard/premium")} */}
+                  <NavLink
+                    href="/dashboard/premium"
+                    // style={({ isActive }) =>
+                    //   isActive ? { textDecoration: "strikethrough" } : undefined
+                    // }
+                  >
+                    Premium Users
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  {/* {navigate1("/dashboard/regular")} */}
+                  <NavLink href="/dashboard/regular"> Regular Users </NavLink>
+                </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                {/* <DropdownItem>Reset</DropdownItem> */}
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText>React App </NavbarText>
           <Button
             onClick={() => {
               localStorage.removeItem("token");

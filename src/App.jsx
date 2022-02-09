@@ -38,11 +38,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/:userId" element={<UserDetails />} />
           <Route path="/sign_up" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard title="Users" />} />
+          <Route path="/dashboard/:userId" element={<UserDetails />} />
+
+          <Route
+            path="/dashboard/regular"
+            element={<Dashboard title="Regular Users" />}
+          />
+          <Route
+            path="/dashboard/premium"
+            element={<Dashboard title="Premium Users" />}
+          />
         </Routes>
-        {/* <Footer id="footer" /> */}
+        {/*  <Footer id="footer" /> */}
       </div>
     </>
   );

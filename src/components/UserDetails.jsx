@@ -33,7 +33,7 @@ const UserDetails = () => {
 
   return (
     <>
-      <p>User Deatils</p>
+      <p>User Details</p>
       <h2>
         {userData.first_name} {userData.last_name}
       </h2>

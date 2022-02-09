@@ -188,7 +188,7 @@ const Login = ({ setIsLogin }) => {
           localStorage.setItem("token", data.token);
           // setIsLogin(true);
 
-          navigate("/Dashboard");
+          navigate("/dashboard");
         });
     }
     console.log(emailError, "hello");
@@ -199,7 +199,7 @@ const Login = ({ setIsLogin }) => {
 
   // -----------------------------------------------------------------------
 
-  // -----------------------------------------------------------------------
+  // -----------------------title------------------------------------------------
 
   return (
     <Form inline id="login_form" onSubmit={submitHandler}>
