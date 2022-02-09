@@ -8,9 +8,11 @@ import {
   userDataInitiate,
   userDataSuccess,
 } from "../redux/users/action";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ setIsLogin }) => {
   // const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
   const userState = useSelector((state) => state.userReducer);
   console.log(userState);
   const dispatch = useDispatch();
@@ -34,19 +36,29 @@ const Dashboard = ({ setIsLogin }) => {
       .catch((err) => dispatch(userDataFailure(err)));
   }, []);
 
+  // if (!userData) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // const navigateToUserDetails = (userId) => {
+  //   navigate(`/users/${userId}`);
+  // };
+
   return (
     <div>
       {<Navbar1 setIsLogin={setIsLogin} />}
-
-      {userData.map((e) => (
+      {userData.map((user) => (
+        // <div onClick={navigateToUserDetails(user.id)}>
         <ProjectCard
-          id={e.id}
-          first_name={e.first_name}
-          last_name={e.last_name}
-          email={e.email}
-          avatar={e.avatar}
+          id={user.id}
+          first_name={user.first_name}
+          last_name={user.last_name}
+          email={user.email}
+          avatar={user.avatar}
         />
+        // </div>
       ))}
+      ;
     </div>
   );
 };

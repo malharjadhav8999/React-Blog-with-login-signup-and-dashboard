@@ -7,14 +7,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./redux/rootReducer";
+// import { render } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

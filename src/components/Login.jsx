@@ -2,6 +2,7 @@ import React, { useState, useReducer } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import validator from "validator";
 //import { useNavigate } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 // -----------------------------------------------------------------------
 
@@ -69,6 +70,8 @@ const reducer = (state, action) => {
 // -----------------------------------------------------------------------
 
 const Login = ({ setIsLogin }) => {
+  let navigate = useNavigate();
+
   // const [emailError, setEmailError] = useState("");
   // const [passwordError, setPasswordError] = useState("");
 
@@ -92,7 +95,16 @@ const Login = ({ setIsLogin }) => {
       console.log("this is validemail", email);
       dispatch({
         type: loginConstants.setEmailError,
-        payload: "Valid Email :)",
+        payload: (
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "green",
+            }}
+          >
+            {"Valid Email :)"}),
+          </p>
+        ),
       });
       return true;
     } else {
@@ -100,7 +112,16 @@ const Login = ({ setIsLogin }) => {
       console.log("this is unvalidemail", email);
       dispatch({
         type: loginConstants.setEmailError,
-        payload: "Enter valid Email!",
+        payload: (
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "red",
+            }}
+          >
+            {"Enter valid Email!"}),
+          </p>
+        ),
       });
     }
     return false;
@@ -150,9 +171,9 @@ const Login = ({ setIsLogin }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    var f = validatePassword();
+    // var f = validatePassword();
     var m = validateEmail();
-    if (m && f) {
+    if (m) {
       const requestOptions = {
         method: "POST",
         headers: {
@@ -165,7 +186,9 @@ const Login = ({ setIsLogin }) => {
         .then((response) => response.json())
         .then((data) => {
           localStorage.setItem("token", data.token);
-          setIsLogin(true);
+          // setIsLogin(true);
+
+          navigate("/Dashboard");
         });
     }
     console.log(emailError, "hello");
@@ -180,7 +203,7 @@ const Login = ({ setIsLogin }) => {
 
   return (
     <Form inline id="login_form" onSubmit={submitHandler}>
-      <FormGroup id="email">
+      <FormGroup id="email" style={{ display: "flex" }}>
         <Label for="exampleEmail" hidden>
           Email
         </Label>
@@ -198,15 +221,34 @@ const Login = ({ setIsLogin }) => {
           // setEmail(e.target.value)}
           value={email}
         />
-        <span
+        <Button
+          onClick={(e) =>
+            dispatch({
+              type: loginConstants.setEmail,
+              payload: "",
+            })
+          }
+          // setPassword("")
+        >
+          X
+        </Button>
+        {/* <span
           style={{
             fontWeight: "bold",
             color: "white",
           }}
         >
           {emailError}
-        </span>
+        </span> */}
       </FormGroup>
+      <span
+        style={{
+          fontWeight: "bold",
+          color: "white",
+        }}
+      >
+        {emailError}
+      </span>
       {/* ----------------------------------------------------------------------- */}
       <FormGroup id="pass" style={{ display: "flex" }}>
         <Label for="examplePassword" hidden>

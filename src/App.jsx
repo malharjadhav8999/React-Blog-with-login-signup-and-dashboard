@@ -6,49 +6,74 @@ import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
+import { Link, Routes, Route } from "react-router-dom";
+import UserDetails from "./components/UserDetails";
+import Homepage from "./components/HomePage";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   // if (localStorage.getItem("token"))
   // {
   //   setIsLogin(true)
   // }
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLogin(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     setIsLogin(true);
+  //   }
+  // }, []);
+  return (
+    <>
+      <div style={{ padding: "40px" }}>
+        <nav
+          style={{
+            borderBottom: "solid 1px",
+            paddingBottom: "1rem",
+          }}
+        >
+          {/* <Link to="/login">Login</Link> | <Link to="/dashboard">Dashboard</Link> */}
+        </nav>
 
-  if (isLogin) {
-    return (
-      <div>
-        <Dashboard setIsLogin={setIsLogin} />
-        <SignUp />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/:userId" element={<UserDetails />} />
+          <Route path="/sign_up" element={<SignUp />} />
+        </Routes>
+        {/* <Footer id="footer" /> */}
       </div>
-    );
-  } else {
-    return (
-      <>
-        <div className="App">
-          <Login setIsLogin={setIsLogin} />
+    </>
+  );
 
-          {/* <h2>Hello World</h2>
-        {ProjectJson.map((item, index) => {
-          return (
-            <ProjectCard
-              url={item.image_url}
-              title={item.name}
-              desc={item.description}
-            />
-          );
-        })}
-        <ProjectCard /> */}
-        </div>
-        <Footer id="footer" />
-      </>
-    );
-  }
+  // if (isLogin) {
+  //   return (
+  //     <div>
+  //       <Dashboard setIsLogin={setIsLogin} />
+  //       <SignUp />
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <>
+  //       <div className="App">
+  //         <Login setIsLogin={setIsLogin} />
+
+  //         {/* <h2>Hello World</h2>
+  //       {ProjectJson.map((item, index) => {
+  //         return (
+  //           <ProjectCard
+  //             url={item.image_url}
+  //             title={item.name}
+  //             desc={item.description}
+  //           />
+  //         );
+  //       })}
+  //       <ProjectCard /> */}
+  //       </div>
+  //     </>
+  //   );
+  // }
 }
 export default App;
