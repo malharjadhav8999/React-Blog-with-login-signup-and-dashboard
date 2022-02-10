@@ -40,24 +40,24 @@ const Dashboard = ({ title /*setIsLogin*/ }) => {
   //   return <div>Loading...</div>;
   // }
 
-  // const navigateToUserDetails = (userId) => {
-  //   navigate(`/users/${userId}`);
-  // };
+  const navigateToUserDetails = (userId) => {
+    navigate(`/dashboard/${userId}`);
+  };
 
   return (
     <div>
       {<Navbar1 /*setIsLogin={setIsLogin}*/ />}
       <h1>{title}</h1>
       {userData.map((user) => (
-        // <div onClick={navigateToUserDetails(user.id)}>
-        <ProjectCard
-          id={user.id}
-          first_name={user.first_name}
-          last_name={user.last_name}
-          email={user.email}
-          avatar={user.avatar}
-        />
-        // </div>
+        <div onClick={() => navigateToUserDetails(user.id)}>
+          <ProjectCard
+            id={user.id}
+            first_name={user.first_name}
+            last_name={user.last_name}
+            email={user.email}
+            avatar={user.avatar}
+          />
+        </div>
       ))}
       ;
     </div>

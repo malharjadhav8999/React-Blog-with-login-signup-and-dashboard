@@ -4,6 +4,8 @@ import * as yup from "yup";
 
 import validator from "validator";
 
+import { useNavigate } from "react-router-dom";
+
 // -----------------------------------------------------------------------
 
 const initialState = {
@@ -81,6 +83,8 @@ const clearEmailField = () => {};
 // -----------------------------------------------------------------------
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const { email, password, firstName, lastName } = state;
 
@@ -147,11 +151,25 @@ const SignUp = () => {
             placeholder="Enter password"
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          onClick={() => navigate("/dashboard")}
+        >
           Sign Up
         </button>
         <p className="forgot-password text-right">
-          Already registered <a href="./login">sign in?</a>
+          Already registered{" "}
+          <span
+            onClick={() => {
+              navigate("/login");
+            }}
+            style={{
+              color: "blue",
+            }}
+          >
+            sign in?
+          </span>
         </p>
       </form>
     </>

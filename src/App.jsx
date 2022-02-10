@@ -25,7 +25,7 @@ function App() {
   // }, []);
   return (
     <>
-      <div style={{ padding: "40px" }}>
+      <div style={{ padding: "40px" }} className="container">
         <nav
           style={{
             borderBottom: "solid 1px",
@@ -38,6 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
+          
           <Route path="/sign_up" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard title="Users" />} />
           <Route path="/dashboard/:userId" element={<UserDetails />} />
@@ -59,7 +60,7 @@ function App() {
   // if (isLogin) {
   //   return (
   //     <div>
-  //       <Dashboard setIsLogin={setIsLogin} />
+  //       <Dashboard setIsLogin={se9tIsLogin} />
   //       <SignUp />
   //     </div>
   //   );

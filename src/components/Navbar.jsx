@@ -44,18 +44,17 @@ const Navbar1 = ({ setIsLogin }) => {
               <DropdownMenu right>
                 <DropdownItem>
                   {/* {navigate1("/dashboard/premium")} */}
-                  <NavLink
-                    href="/dashboard/premium"
-                    // style={({ isActive }) =>
-                    //   isActive ? { textDecoration: "strikethrough" } : undefined
-                    // }
-                  >
+                  <NavLink onClick={()=>{
+                    navigate1("/dashboard/premium");
+                  }}> 
                     Premium Users
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
                   {/* {navigate1("/dashboard/regular")} */}
-                  <NavLink href="/dashboard/regular"> Regular Users </NavLink>
+                  <NavLink onClick={()=>{
+                    navigate1("/dashboard/regular");
+                  }}> Regular Users </NavLink>
                 </DropdownItem>
                 <DropdownItem divider />
                 {/* <DropdownItem>Reset</DropdownItem> */}

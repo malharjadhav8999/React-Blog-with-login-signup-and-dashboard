@@ -180,7 +180,9 @@ const Login = ({ setIsLogin }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: email, password: password }),
+        
       };
+      console.log(password);
       console.log(requestOptions);
       fetch("https://reqres.in/api/login", requestOptions)
         .then((response) => response.json())
@@ -202,7 +204,7 @@ const Login = ({ setIsLogin }) => {
   // -----------------------title------------------------------------------------
 
   return (
-    <Form inline id="login_form" onSubmit={submitHandler}>
+    <Form inline id="login_form" className="col-md-4 m-auto" onSubmit={submitHandler}>
       <FormGroup id="email" style={{ display: "flex" }}>
         <Label for="exampleEmail" hidden>
           Email

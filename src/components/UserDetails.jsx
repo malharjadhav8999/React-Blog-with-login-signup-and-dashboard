@@ -2,10 +2,18 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import {
+  userDetailsDataFailure,
+  userDetailsDataInitiate,
+  userDetailsDataSuccess,
+} from "../redux/userDetails/action";
 
 const UserDetails = () => {
   const { userId } = useParams();
-  const [userData, setUserData] = useState([]);
+  // const [userData, setUserData] = useState([]);
+  const userDetailsState = useSelector((state) => state.userDetailsReducer);
+  const dispatch = useDispatch();
+  const { loader, userData, error } = userDetailsState;
 
   useEffect(() => {
     const requestOptions = {
@@ -14,13 +22,18 @@ const UserDetails = () => {
         "Content-Type": "application/json",
       },
     };
+    dispatch(userDetailsDataInitiate());
     fetch(`https://reqres.in/api/users/${userId}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        setUserData(data.data);
+        // setUserData(data.data);
+        dispatch(userDetailsDataSuccess(data.data));
         console.log(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        dispatch(userDetailsDataFailure(err));
+        console.log(err);
+      });
 
     console.log(userData);
   }, []);

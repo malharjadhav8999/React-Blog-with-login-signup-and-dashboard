@@ -1,20 +1,33 @@
 import { userActionConstants } from "./actionTypes";
 
 const initialState = {
-  // loader: ,
-
-  // error: "",
+  loader: false,
+  userData: {},
+  error: "",
 };
 
 const userDetailsReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case userActionConstants.XYZ:
+    case userActionConstants.USERS_DETAILS_DATA_INITIATE:
       return {
         ...state,
-        // loader: false,
-        // error: payload,
+        loader: true,
+      };
+
+    case userActionConstants.USERS_DETAILS_DATA_SUCCESS:
+      return {
+        ...state,
+        loader: false,
+        userData: payload,
+      };
+
+    case userActionConstants.USERS_DETAILS_DATA_FAILURE:
+      return {
+        ...state,
+        loader: false,
+        error: payload,
       };
 
     default: {
