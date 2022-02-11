@@ -9,6 +9,9 @@ import SignUp from "./components/SignUp";
 import { Link, Routes, Route } from "react-router-dom";
 import UserDetails from "./components/UserDetails";
 import Homepage from "./components/HomePage";
+import Blogs from "./components/Blogs";
+import Posts from "./components/posts/posts";
+import HomePage from "./components/HomePage";
 
 function App() {
   // const [isLogin, setIsLogin] = useState(false);
@@ -38,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
-          
+
           <Route path="/sign_up" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard title="Users" />} />
           <Route path="/dashboard/:userId" element={<UserDetails />} />
@@ -51,6 +54,11 @@ function App() {
             path="/dashboard/premium"
             element={<Dashboard title="Premium Users" />}
           />
+
+          <Route path="/dashboard/blogs" element={<Posts />}></Route>
+          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/post/:userId" element={<Blogs />} />
+          <Route path="*" element={<HomePage />}></Route>
         </Routes>
         {/*  <Footer id="footer" /> */}
       </div>

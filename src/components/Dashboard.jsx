@@ -41,7 +41,9 @@ const Dashboard = ({ title /*setIsLogin*/ }) => {
   // }
 
   const navigateToUserDetails = (userId) => {
+    console.log(navigate);
     navigate(`/dashboard/${userId}`);
+    console.log(navigate);
   };
 
   return (

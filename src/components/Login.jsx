@@ -80,6 +80,8 @@ const Login = ({ setIsLogin }) => {
 
   // const [submit, setSubmit] = useState(true);
 
+  const [show, setShow] = useState(false);
+
   // -----------------------------------------------------------------------
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -180,7 +182,6 @@ const Login = ({ setIsLogin }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: email, password: password }),
-        
       };
       console.log(password);
       console.log(requestOptions);
@@ -204,7 +205,12 @@ const Login = ({ setIsLogin }) => {
   // -----------------------title------------------------------------------------
 
   return (
-    <Form inline id="login_form" className="col-md-4 m-auto" onSubmit={submitHandler}>
+    <Form
+      inline
+      id="login_form"
+      className="col-md-4 m-auto"
+      onSubmit={submitHandler}
+    >
       <FormGroup id="email" style={{ display: "flex" }}>
         <Label for="exampleEmail" hidden>
           Email
@@ -252,6 +258,7 @@ const Login = ({ setIsLogin }) => {
         {emailError}
       </span>
       {/* ----------------------------------------------------------------------- */}
+
       <FormGroup id="pass" style={{ display: "flex" }}>
         <Label for="examplePassword" hidden>
           Password
@@ -260,7 +267,7 @@ const Login = ({ setIsLogin }) => {
           id="examplePassword"
           name="password"
           placeholder="Password"
-          type="password"
+          type={show ? "text" : "password"}
           onChange={(e) =>
             dispatch({
               type: loginConstants.setPassword,
@@ -291,9 +298,23 @@ const Login = ({ setIsLogin }) => {
         >
           {passwordError}
         </span>
+      </FormGroup>
+      {/* ----------------------------------------------------------------------- */}
 
-        {/* ----------------------------------------------------------------------- */}
-      </FormGroup>{" "}
+      <FormGroup check>
+        <Label check style={{ color: "white" }}>
+          <Input
+            type="checkbox"
+            onChange={(e) => {
+              setShow(!show);
+            }}
+          />
+          Show Password
+        </Label>
+      </FormGroup>
+
+      {/* ----------------------------------------------------------------------- */}
+
       <Button type="submit">Login</Button>
       {/* ----------------------------------------------------------------------- */}
       <Button

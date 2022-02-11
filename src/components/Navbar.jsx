@@ -27,10 +27,27 @@ const Navbar1 = ({ setIsLogin }) => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/dashboard/">Dashboard</NavLink>
+              {/* <NavLink href="/dashboard/">Dashboard</NavLink> */}
+              <NavLink
+                onClick={() => {
+                  navigate1("/dashboard");
+                }}
+              >
+                Dashboard
+            <NavItem></NavItem>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/blogs/">Blogs</NavLink>
+              <NavLink
+                onClick={() => {
+                  console.log(navigate1);
+
+                  navigate1("/dashboard/blogs");
+                  console.log(navigate1);
+                }}
+              >
+                Blogs
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/malharjadhav8999/React_App">
@@ -44,17 +61,24 @@ const Navbar1 = ({ setIsLogin }) => {
               <DropdownMenu right>
                 <DropdownItem>
                   {/* {navigate1("/dashboard/premium")} */}
-                  <NavLink onClick={()=>{
-                    navigate1("/dashboard/premium");
-                  }}> 
+                  <NavLink
+                    onClick={() => {
+                      navigate1("/dashboard/premium");
+                    }}
+                  >
                     Premium Users
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
                   {/* {navigate1("/dashboard/regular")} */}
-                  <NavLink onClick={()=>{
-                    navigate1("/dashboard/regular");
-                  }}> Regular Users </NavLink>
+                  <NavLink
+                    onClick={() => {
+                      navigate1("/dashboard/regular");
+                    }}
+                  >
+                    {" "}
+                    Regular Users{" "}
+                  </NavLink>
                 </DropdownItem>
                 <DropdownItem divider />
                 {/* <DropdownItem>Reset</DropdownItem> */}
