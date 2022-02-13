@@ -9,6 +9,7 @@ import {
   userDataSuccess,
 } from "../redux/users/action";
 import { useNavigate } from "react-router-dom";
+import { Row, Col } from "reactstrap";
 
 const Dashboard = ({ title /*setIsLogin*/ }) => {
   // const [userData, setUserData] = useState([]);
@@ -49,19 +50,32 @@ const Dashboard = ({ title /*setIsLogin*/ }) => {
   return (
     <div>
       {<Navbar1 /*setIsLogin={setIsLogin}*/ />}
-      <h1>{title}</h1>
-      {userData.map((user) => (
-        <div onClick={() => navigateToUserDetails(user.id)}>
-          <ProjectCard
-            id={user.id}
-            first_name={user.first_name}
-            last_name={user.last_name}
-            email={user.email}
-            avatar={user.avatar}
-          />
-        </div>
-      ))}
-      ;
+      <h1 className="py-3 text-center ">{title}</h1>
+      <Row>
+        {userData.map((user) => (
+          <Col md="3" onClick={() => navigateToUserDetails(user.id)}>
+            <ProjectCard
+              id={user.id}
+              first_name={user.first_name}
+              last_name={user.last_name}
+              email={user.email}
+              avatar={user.avatar}
+            />
+          </Col>
+        ))}
+
+        {userData.map((user) => (
+          <Col md="3" onClick={() => navigateToUserDetails(user.id)}>
+            <ProjectCard
+              id={user.id}
+              first_name={user.first_name}
+              last_name={user.last_name}
+              email={user.email}
+              avatar={user.avatar}
+            />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };

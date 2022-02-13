@@ -205,42 +205,44 @@ const Login = ({ setIsLogin }) => {
   // -----------------------title------------------------------------------------
 
   return (
-    <Form
-      inline
-      id="login_form"
-      className="col-md-4 m-auto"
-      onSubmit={submitHandler}
-    >
-      <FormGroup id="email" style={{ display: "flex" }}>
-        <Label for="exampleEmail" hidden>
-          Email
-        </Label>
-        <Input
-          id="exampleEmail"
-          name="email"
-          placeholder="Email"
-          type="text"
-          onChange={(e) =>
-            dispatch({
-              type: loginConstants.setEmail,
-              payload: e.target.value,
-            })
-          }
-          // setEmail(e.target.value)}
-          value={email}
-        />
-        <Button
-          onClick={(e) =>
-            dispatch({
-              type: loginConstants.setEmail,
-              payload: "",
-            })
-          }
-          // setPassword("")
-        >
-          X
-        </Button>
-        {/* <span
+    <>
+      <h1 className="text-center my-3">Login</h1>
+      <Form
+        inline
+        id="login_form"
+        className="col-md-4 m-auto p-2"
+        onSubmit={submitHandler}
+      >
+        <FormGroup id="email" style={{ display: "flex" }}>
+          <Label for="exampleEmail" hidden>
+            Email
+          </Label>
+          <Input
+            id="exampleEmail"
+            name="email"
+            placeholder="Email"
+            type="text"
+            onChange={(e) =>
+              dispatch({
+                type: loginConstants.setEmail,
+                payload: e.target.value,
+              })
+            }
+            // setEmail(e.target.value)}
+            value={email}
+          />
+          <Button
+            onClick={(e) =>
+              dispatch({
+                type: loginConstants.setEmail,
+                payload: "",
+              })
+            }
+            // setPassword("")
+          >
+            X
+          </Button>
+          {/* <span
           style={{
             fontWeight: "bold",
             color: "white",
@@ -248,97 +250,111 @@ const Login = ({ setIsLogin }) => {
         >
           {emailError}
         </span> */}
-      </FormGroup>
-      <span
-        style={{
-          fontWeight: "bold",
-          color: "white",
-        }}
-      >
-        {emailError}
-      </span>
-      {/* ----------------------------------------------------------------------- */}
-
-      <FormGroup id="pass" style={{ display: "flex" }}>
-        <Label for="examplePassword" hidden>
-          Password
-        </Label>
-        <Input
-          id="examplePassword"
-          name="password"
-          placeholder="Password"
-          type={show ? "text" : "password"}
-          onChange={(e) =>
-            dispatch({
-              type: loginConstants.setPassword,
-              payload: e.target.value,
-            })
-          }
-          // setPassword(e.target.value)}
-          value={password}
-        />
-
-        <Button
-          onClick={(e) =>
-            dispatch({
-              type: loginConstants.setPassword,
-              payload: "",
-            })
-          }
-          // setPassword("")
-        >
-          X
-        </Button>
-
+        </FormGroup>
         <span
           style={{
             fontWeight: "bold",
-            color: "red",
+            color: "white",
           }}
         >
-          {passwordError}
+          {emailError}
         </span>
-      </FormGroup>
-      {/* ----------------------------------------------------------------------- */}
-
-      <FormGroup check>
-        <Label check style={{ color: "white" }}>
+        {/* ----------------------------------------------------------------------- */}
+        <FormGroup id="pass" style={{ display: "flex" }}>
+          <Label for="examplePassword" hidden>
+            Password
+          </Label>
           <Input
-            type="checkbox"
-            onChange={(e) => {
-              setShow(!show);
-            }}
+            id="examplePassword"
+            name="password"
+            placeholder="Password"
+            type={show ? "text" : "password"}
+            onChange={(e) =>
+              dispatch({
+                type: loginConstants.setPassword,
+                payload: e.target.value,
+              })
+            }
+            // setPassword(e.target.value)}
+            value={password}
           />
-          Show Password
-        </Label>
-      </FormGroup>
 
-      {/* ----------------------------------------------------------------------- */}
+          <Button
+            onClick={(e) =>
+              dispatch({
+                type: loginConstants.setPassword,
+                payload: "",
+              })
+            }
 
-      <Button type="submit">Login</Button>
-      {/* ----------------------------------------------------------------------- */}
-      <Button
-        type="reset"
-        id="reset"
-        onClick={(e) => {
-          e.preventDefault();
-          // setEmail("");
-          // setPassword("");
+            // setPassword("")
+          >
+            X
+          </Button>
 
-          dispatch({
-            type: loginConstants.setEmail,
-            payload: "",
-          });
+          <span
+            style={{
+              fontWeight: "bold",
+              color: "red",
+            }}
+          >
+            {passwordError}
+          </span>
+        </FormGroup>
+        {/* ----------------------------------------------------------------------- */}
+        <FormGroup check>
+          <Label check style={{ color: "white" }}>
+            <Input
+              type="checkbox"
+              onChange={(e) => {
+                setShow(!show);
+              }}
+            />
+            Show Password
+          </Label>
+        </FormGroup>
+        {/* ----------------------------------------------------------------------- */}
+        <Button type="submit" color="success">
+          Login
+        </Button>{" "}
+        {/* ----------------------------------------------------------------------- */}
+        <Button
+          type="reset"
+          id="reset"
+          onClick={(e) => {
+            e.preventDefault();
+            // setEmail("");
+            // setPassword("");
 
-          dispatch({
-            type: loginConstants.setPassword,
-            payload: "",
-          });
-        }}
-      >
-        Reset
-      </Button>
-    </Form>
+            dispatch({
+              type: loginConstants.setEmail,
+              payload: "",
+            });
+
+            dispatch({
+              type: loginConstants.setPassword,
+              payload: "",
+            });
+          }}
+          color="primary"
+        >
+          Reset
+        </Button>
+        <p className="forgot-password text-right " color="white">
+             {/* ---------------------------------------{" "} */}
+          <span
+            onClick={() => {
+              navigate("/abc");
+            }}
+            style={{
+              color: "crimson",
+            }}
+          >
+            <i>forget password ?</i>
+          </span>
+        </p>
+      </Form>
+    </>
   );
 };
 

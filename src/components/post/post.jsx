@@ -1,17 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./post.css";
+import { MDBView, MDBMask } from "mdbreact";
 
 export default function Post({ img, description, title, userId }) {
   const navigate = useNavigate();
 
   return (
     <div
-      className="post"
+      className="post "
       onClick={() => {
         navigate(`/post/${userId}`);
       }}
     >
-      <img className="postImg" src={img} alt="" />
+      <MDBView hover zoom>
+        <img
+          src="https://mdbootstrap.com/img/Others/documentation/img%20(131)-mini.webp"
+          className="img-postImg"
+          alt=""
+        />
+        <MDBMask className="flex-center">
+          <p className="white-text">Zoom effect</p>
+        </MDBMask>
+      </MDBView>
+
+      {/* <img className="postImg" src={img} alt="" /> */}
       <div className="postInfo">
         <div className="postCats">
           <span className="postCat">

@@ -2,11 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Container } from "reactstrap";
 import {
   userDetailsDataFailure,
   userDetailsDataInitiate,
   userDetailsDataSuccess,
 } from "../redux/userDetails/action";
+import Navbar1 from "./Navbar";
 
 const UserDetails = () => {
   const { userId } = useParams();
@@ -46,19 +48,26 @@ const UserDetails = () => {
 
   return (
     <>
-      <p>User Details</p>
-      <h2>
-        {userData.first_name} {userData.last_name}
-      </h2>
+      <Navbar1 />
+      <Container className="m-auto text-center">
+        <h1 className="py-5">User Details</h1>
 
-      <div style={{ display: "flex" }}>
-        <img style={{ height: 100 }} src={userData.avatar}></img>
         <div>
-          <div>ID:: {userData.id}</div>
-          <div>Email: {userData.eamil}</div>
+          <img
+            style={{ height: 300 }}
+            src={userData.avatar}
+            className="rounded-circle "
+          ></img>
+          <div>
+            <h3>
+              {userData.first_name} {userData.last_name}
+            </h3>
+            <div>ID : {userData.id}</div>
+            <div>Email : {userData.email}</div>
+          </div>
+          {/* <div>{JSON.stringify(userData)}</div> */}
         </div>
-        <div>{JSON.stringify(userData)}</div>
-      </div>
+      </Container>
     </>
   );
 };

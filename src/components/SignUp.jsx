@@ -80,6 +80,31 @@ const clearEmailField = () => {};
 
 // -----------------------------------------------------------------------
 
+const Validation = (email, password, firstName, lastName) => {
+  let schema = yup.object().shape({
+    firstName: yup.string().email().required(),
+    lastName: yup.string().url().required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(8).required(),
+
+    // createdOn: Yup.date().default(function () {
+    //   return new Date();
+    //}),
+  });
+
+  return schema
+    .validate({ email, password, firstName, lastName })
+    .then(() => {
+      console.log("abc");
+      return true;
+    })
+    .catch(function (err) {
+      return err;
+      //   err.name; // => 'ValidationError'
+      //   err.errors; // => ['Deve ser maior que 18']
+    });
+};
+
 // -----------------------------------------------------------------------
 
 const SignUp = () => {
@@ -93,23 +118,34 @@ const SignUp = () => {
 
     console.log(e.target.email.value);
 
-    let schema = yup.object().shape({
-      firstName: yup.string().email(),
-      lastName: yup.string().url(),
-      email: yup.string().email().required(),
-      password: yup.string().min(8).required(),
-
-      // createdOn: Yup.date().default(function () {
-      //   return new Date();
-      //}),
+    Validation(email, password, firstName, lastName).then((data) => {
+      console.log(data);
     });
 
-    schema
-      .validate({ email, password, firstName, lastName })
-      .catch(function (err) {
-        //   err.name; // => 'ValidationError'
-        //   err.errors; // => ['Deve ser maior que 18']
-      });
+    // if (Validation(email, password, firstName, lastName)) {
+    //   navigate("/dashboard");
+    // }
+
+    // let schema = yup.object().shape({
+    //   firstName: yup.string().email().required(),
+    //   lastName: yup.string().url().required(),
+    //   email: yup.string().email().required(),
+    //   password: yup.string().min(8).required(),
+
+    //   // createdOn: Yup.date().default(function () {
+    //   //   return new Date();
+    //   //}),
+    // });
+
+    // schema
+    //   .validate({ email, password, firstName, lastName })
+    //   .then(() => {
+    //     console.log("abc");
+    //   })
+    //   .catch(function (err) {
+    //     //   err.name; // => 'ValidationError'
+    //     //   err.errors; // => ['Deve ser maior que 18']
+    //   });
   };
 
   return (
@@ -120,21 +156,23 @@ const SignUp = () => {
           onSignUp(e);
         }}
       >
-        <h3>Sign Up</h3>
-        <div className="form-group">
-          <label>First name</label>
+        <h3 className="pt-4 pb-3">Sign Up</h3>
+        <div className="form-group pt-2">
+          <label className="py-1">First name</label>
           <input
             type="text"
             className="form-control"
             placeholder="First name"
           />
         </div>
-        <div className="form-group">
-          <label>Last name</label>
+        <div className="form-group pt-2">
+          <label className="py-1">Last name</label>
           <input type="text" className="form-control" placeholder="Last name" />
         </div>
-        <div className="form-group">
-          <label for="email">Email address</label>
+        <div className="form-group pt-2">
+          <label for="email" className="py-1">
+            Email address
+          </label>
           <input
             id="email"
             name="email"
@@ -143,8 +181,8 @@ const SignUp = () => {
             placeholder="Enter email"
           />
         </div>
-        <div className="form-group">
-          <label>Password</label>
+        <div className="form-group pt-2 pb-5">
+          <label className="py-1">Password</label>
           <input
             type="password"
             className="form-control"
@@ -153,12 +191,13 @@ const SignUp = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-primary btn-block"
-          onClick={() => navigate("/dashboard")}
+          className="btn btn-primary btn-block "
+          // onClick={() => navigate("/dashboard")}
+          // className="py-1"
         >
           Sign Up
         </button>
-        <p className="forgot-password text-right">
+        <p className="forgot-password text-right pt-2">
           Already registered{" "}
           <span
             onClick={() => {

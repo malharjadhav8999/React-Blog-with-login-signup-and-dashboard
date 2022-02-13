@@ -28,15 +28,21 @@ function App() {
   // }, []);
   return (
     <>
-      <div style={{ padding: "40px" }} className="container">
-        <nav
+      <div
+        style={{
+          padding: "40px",
+          
+        }}
+        className="container"
+      >
+        {/* <nav
           style={{
             borderBottom: "solid 1px",
             paddingBottom: "1rem",
           }}
-        >
-          {/* <Link to="/login">Login</Link> | <Link to="/dashboard">Dashboard</Link> */}
-        </nav>
+        > */}
+        {/* <Link to="/login">Login</Link> | <Link to="/dashboard">Dashboard</Link> */}
+        {/* </nav> */}
 
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -60,7 +66,7 @@ function App() {
           <Route path="/post/:userId" element={<Blogs />} />
           <Route path="*" element={<HomePage />}></Route>
         </Routes>
-        {/*  <Footer id="footer" /> */}
+        <Footer id="footer" />
       </div>
     </>
   );

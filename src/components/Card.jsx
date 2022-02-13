@@ -10,34 +10,32 @@ import {
 } from "reactstrap";
 
 const ProjectCard = (props) => {
+  const { id, first_name, last_name, email, avatar } = props;
 
-  const { id, first_name, last_name, email, avatar } = props; 
-
-return (
-    <Card>
+  return (
+    <Card color="dark" outline className="my-3">
       <CardImg
         alt="Card image cap"
         src={avatar}
         top
-        style={{
-          width: "20%",
-          height: "20%",
-        }}
+        // style={{
+        //   width: "20%",
+        //   height: "20%",
+        // }}
       />
       <CardBody>
-      <CardTitle tag="h5">{id} {first_name} {last_name }</CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
+        <CardTitle tag="h5">
+          {/* {id} */}
+          {first_name} {last_name}
+        </CardTitle>
+        {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
           Card subtitle
         </CardSubtitle>
-        <CardText>{email}</CardText>
-        <Button>Button</Button>
+        <CardText>{email}</CardText> */}
+        {/* <Button>Button</Button> */}
       </CardBody>
     </Card>
   );
-
-
-
-
 
   // const { url, title, desc } = props;
   // return (

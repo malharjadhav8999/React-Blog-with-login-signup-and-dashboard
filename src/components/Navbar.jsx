@@ -20,8 +20,13 @@ const Navbar1 = ({ setIsLogin }) => {
   let navigate1 = useNavigate();
 
   return (
-    <div>
-      <Navbar color="light" expand="md" light>
+    <div color="dark" outline classname="border border-dark">
+      <Navbar
+        color="light"
+        expand="md "
+        light
+        className="p-1 m-1"
+      >
         <NavbarBrand href="/">Homepage</NavbarBrand>
         <NavbarToggler onClick={function noRefCheck() {}} />
         <Collapse navbar>
@@ -34,7 +39,7 @@ const Navbar1 = ({ setIsLogin }) => {
                 }}
               >
                 Dashboard
-            <NavItem></NavItem>
+                <NavItem></NavItem>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -85,13 +90,17 @@ const Navbar1 = ({ setIsLogin }) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>React App </NavbarText>
+          <NavbarText>
+            <h4>React App {"  "}</h4>
+          </NavbarText>
+
           <Button
             onClick={() => {
               localStorage.removeItem("token");
               navigate1("/login");
               //setIsLogin(false)
             }}
+            color="danger"
           >
             Logout
           </Button>

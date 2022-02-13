@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import Post from "../post/post";
 import "./posts.css";
+import { useSelector, useDispatch } from "react-redux";
+import Navbar1 from "../Navbar";
+import { Col, Row } from "reactstrap";
+// import {
+//   blogsFailure,
+//   blogsInitiate,
+//   blogsSuccess,
+// } from "../redux/blogs/action";
 
 export default function Posts() {
   let [postData, setPostData] = useState([]);
@@ -29,18 +37,23 @@ export default function Posts() {
 
   return (
     <>
-      <h1>POSTS</h1>
+      <Navbar1 />
 
-      {postData.map((item) => {
-        return (
-          <Post
-            img="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            description={item.body}
-            title={item.title}
-            userId={item.userId}
-          />
-        );
-      })}
+      <h1 className="py-3 text-center ">{"  "}POSTS</h1>
+      <Row>
+        {postData.map((item) => {
+          return (
+            <Col md="4">
+              <Post
+                img="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                description={item.body}
+                title={item.title}
+                userId={item.userId}
+              />
+            </Col>
+          );
+        })}
+      </Row>
     </>
   );
 }
