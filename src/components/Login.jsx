@@ -341,10 +341,10 @@ const Login = ({ setIsLogin }) => {
           Reset
         </Button>
         <p className="forgot-password text-right " color="white">
-             {/* ---------------------------------------{" "} */}
+          {/* ---------------------------------------{" "} */}
           <span
             onClick={() => {
-              navigate("/abc");
+              navigate("/login_credentials");
             }}
             style={{
               color: "crimson",

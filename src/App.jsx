@@ -12,6 +12,7 @@ import Homepage from "./components/HomePage";
 import Blogs from "./components/Blogs";
 import Posts from "./components/posts/posts";
 import HomePage from "./components/HomePage";
+import { LoginCredentials } from "./components/LoginCredentials";
 
 function App() {
   // const [isLogin, setIsLogin] = useState(false);
@@ -31,7 +32,6 @@ function App() {
       <div
         style={{
           padding: "40px",
-          
         }}
         className="container"
       >
@@ -64,6 +64,8 @@ function App() {
           <Route path="/dashboard/blogs" element={<Posts />}></Route>
           <Route path="/posts" element={<Posts />}></Route>
           <Route path="/post/:userId" element={<Blogs />} />
+          <Route path="/login_credentials" element={<LoginCredentials />}></Route>
+
           <Route path="*" element={<HomePage />}></Route>
         </Routes>
         <Footer id="footer" />
