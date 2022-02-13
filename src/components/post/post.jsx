@@ -12,18 +12,18 @@ export default function Post({ img, description, title, userId }) {
         navigate(`/post/${userId}`);
       }}
     >
-      <MDBView hover zoom>
+      {/* <MDBView hover zoom>
         <img
           src="https://mdbootstrap.com/img/Others/documentation/img%20(131)-mini.webp"
-          className="img-postImg"
+          className="postImg"
           alt=""
         />
         <MDBMask className="flex-center">
           <p className="white-text">Zoom effect</p>
         </MDBMask>
-      </MDBView>
+      </MDBView> */}
 
-      {/* <img className="postImg" src={img} alt="" /> */}
+      <img className="postImg" src={img} alt="" />
       <div className="postInfo">
         <div className="postCats">
           <span className="postCat">
